@@ -62,20 +62,23 @@ export default function MusicList(){ //함수형 컴포넌트
         data = {musicList}
         renderItem={({item, i}) => (
 
-        <View style = {styles.container} key={i}>
+        <View style = {styles.midContainer} key={i}>
         
         
           <ImageBackground
           source={{uri:'https://facebook.github.io/react-native/img/tiny_logo.png'}}
           style={styles.bgImage}
           ></ImageBackground>
-          <TouchableOpacity onPress={()=> alert('click')}>
+          {/*<TouchableOpacity onPress={()=> alert('click')}>*/}
+          <TouchableOpacity onPress={()=> console.log(item.artist)}> 
+  
 
-        <View style = {styles.itemSong}>
-          <Text stlye={styles.itemTitle}>{item.title}</Text>
-          <Text stlye={styles.itemArtist}>{item.artist}</Text>
-        </View>
-        </TouchableOpacity>
+          <View style = {styles.itemSong}>
+            <Text stlye={styles.itemTitle}>{item.title}</Text>
+            <Text stlye={styles.itemArtist}>{item.artist}</Text>
+          </View>
+          </TouchableOpacity>
+          
       </View>
       
     )}
@@ -90,7 +93,7 @@ export default function MusicList(){ //함수형 컴포넌트
         flexDirection: 'column',
       },
 
-      container: {
+      midContainer: {
       display: 'flex',
       flexDirection: 'row',
       justifyContent: 'flex-start',

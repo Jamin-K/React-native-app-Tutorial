@@ -11,8 +11,11 @@ import {
   TouchableOpacity,
 } from 'react-native';
 
+
 const path = 'C:\Users\developkim\testApp\장범준-고백.mp3';
+
 let songState = 0; //0=정지
+
 
 function App() {
   const musicData = [
@@ -62,15 +65,24 @@ function App() {
   const [state, setState] = useState('play-sharp');
   const [titleState, setTitle] = useState("제목");
   const [artistState, setArtist] = useState("가수");
+  const [music,setMusic] = useState(null);
+  let summer;
+
+
+  
+  
   function ClickPlayBtn() {
     if (songState == 0) {
       songState = 1;
       setState('pause-sharp');
+      play();
+
       return alert("play");
     }
     else if (songState == 1) {
       songState = 0;
       setState('play-sharp')
+      music.pause();
       return alert("pause");
     }
     else {
@@ -83,6 +95,23 @@ function App() {
     setTitle(item.title);
     setArtist(item.artist);
 
+  }
+
+  const play = () =>{
+    summer = new Sound("goback.mp3", Sound.MAIN_BUNDLE, (err) => {
+      if(err){
+        console.log('hata',err);
+        return;
+      }
+      else{
+        summer.play((success) => {
+          console.log('end', success);
+        })
+      }
+      
+    })
+    console.log('summer', summer);
+    setMusic(summer);
   }
 
 
@@ -107,7 +136,7 @@ function App() {
 
 
               <ImageBackground
-                source={{ uri: 'https://facebook.github.io/react-native/img/tiny_logo.png' }}
+                source={{ uri: item.picture }}
                 style={styles.bgImage}
               ></ImageBackground>
               {/*<TouchableOpacity onPress={()=> alert('click')}>*/}
@@ -240,11 +269,14 @@ const styles = StyleSheet.create({
   },
   playIcon: {
     flexDirection: 'row',
-    paddingLeft: 185,
+    paddingLeft: 170,
+    width: 300,
   },
 
   playDetail: {
     paddingLeft: 15,
+    width: 90,
+
   }
 
 

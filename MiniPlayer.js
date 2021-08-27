@@ -10,7 +10,7 @@ import Icon from 'react-native-vector-icons/Ionicons';
 const path = 'C:\Users\developkim\testApp\장범준-고백.mp3';
 let songState = 0; //0=정지
 
-export default function MiniPlayer(){
+function MiniPlayer(){
   const [state, setState] = useState('play-sharp');
 
   function ClickPlayBtn(){
@@ -30,8 +30,11 @@ export default function MiniPlayer(){
   
   };
 
+
+
   return(
-    <View style = {styles.container}>
+    
+    <View style = {styles.bottomContainer}>
 
       <View style = {styles.playDetail}>
         <Text style={{fontSize: 18, color: "#191919"}}>제목</Text>
@@ -60,7 +63,7 @@ export default function MiniPlayer(){
 
 
 const styles = StyleSheet.create({
-  container: {
+  bottomContainer: {
     flex: 1,
     alignItems: 'center',
     justifyContent: 'flex-start',
@@ -77,3 +80,5 @@ const styles = StyleSheet.create({
   }
 
 });
+
+export default MiniPlayer;
